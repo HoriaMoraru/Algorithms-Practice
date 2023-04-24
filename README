@@ -1,0 +1,65 @@
+Tema 1 - PA - Horia Andrei Moraru
+
+Problema 1 -> FERIBOT:
+
+  Descrierea algoritmului:
+  Acest algoritm determină greutatea maximă a unei mașini pe care o poate transporta un feribot, dată fiind capacitatea maximă de transport a feribotului și greutatea fiecărei mașini.
+
+  -> Algoritm în funcția feribot:
+  Se realizează o căutare binară între greutatea minimă și cea maximă a mașinilor care trebuie transportate, până când intervalul de căutare se micșorează la un singur element. 
+  În fiecare iterație se calculează mid ca mijlocul intervalului de căutare, se inițializează nr_feris cu 1 și current_cost cu 0, și se parcurge vectorul cars. 
+  Dacă adăugarea greutății mașinii la greutatea curentă aferentă feribotului nu depășește mid, atunci se adaugă greutatea mașinii la current_cost. 
+  În caz contrar, se crește nr_feris, se verifică dacă numărul de feriboturi necesare a depășit max_feris și, în caz afirmativ, se iese din bucla for. 
+  Se reinitializează current_cost cu greutatea mașinii curente și se continuă
+
+Problema 2 -> NOSTORY:
+  -> Descrierea algoritmului :
+  Această funcție este o implementare a unei strategii de joc, numită "Nostory", care se joacă între două echipe, fiecare echipă având o listă de numere întregi pozitive. 
+  Scopul jocului este de a calcula suma maximă a două numere, unul de pe lista fiecărei echipe,  
+  în timp ce un anumit număr de mutări poate fi făcut pentru a schimba pozițiile numerelor din lista fiecărei echipe.
+
+  -> Algoritm in functiile nostory:
+  Funcția primește două vectori, fl și sl, care reprezintă lista fiecărei echipe. Ea sortează aceste liste în ordine descrescătoare și apoi calculează suma maximă a două numere, 
+  unul din fiecare listă, prin parcurgerea listelor și adăugând mereu valoarea maximă dintre cele două numere de pe fiecare poziție a listelor.
+  Funcția, de asemenea, primește un număr, "moves", care reprezintă numărul maxim de mutări permise. 
+  O a doua versiune a funcției, "nostory_2", este comentată în cod și folosește două heap-uri de prioritate (unul pentru cele mai mici valori și unul pentru cele mai mari valori) 
+  pentru a reduce complexitatea de timp de la O(NlogN) la O(N) prin reducerea numărului de sortări și prin eliminarea necesității parcurgerii întregii liste.
+
+Problema 3 -> SUSHI:
+
+  -> Descrierea algoritmului:
+  Acest algoritm calculează cea mai mare sumă de puncte pe care o poate obține un client care vrea să cumpere sushi, 
+  dat fiind numărul de feluri de sushi disponibile, bugetul, prețurile și calitățile acestora.
+
+  -> Algoritm in functiile sushi:
+  Funcțiile sushi rezolvă o variantă a problemei rucsacului pentru alegerea sushi-urilor de către "nf" clienți, fiecare având un buget de "budget" unități monetare. 
+  Se crează un vector bidimensional "dp" care reprezintă calitatea maximă a sushi-urilor alese din primele "ns" tipuri de sushi-uri, având un buget maxim. 
+  Se verifică dacă prețul sushi-ului curent poate fi achiziționat cu bugetul curent și se calculează calitatea maximă a sushi-urilor alese în funcție de asta. 
+  La final, funcția returnează calitatea maximă a sushi-urilor alese din primele "ns" tipuri de sushi-uri, având un buget maxim egal cu bugetul total al tuturor clienților.
+
+Problema 4 -> SEMNALE:
+
+  -> Descrierea algoritmului:
+  Acest cod implementează două funcții, semnale_type1 și semnale_type2, care calculează numărul de șiruri de biți 
+  cu un număr specific de 0 și 1 și care satisfac anumite condiții.
+
+  -> Algoritm in functiile semnale:
+  Funcția semnale_type1 primește două argumente, zeros și ones, care reprezintă numărul de biți de 0 și 1 pe care șirul trebuie să le aibă. 
+  Algoritmul calculează numărul de șiruri care respectă condiția în care două biți de 1 nu pot fi lipite unul de altul.
+  Funcția semnale_type2 primește și ea două argumente, zeros și ones, dar calculează numărul de șiruri care respectă condiția în care orice trei biți de 1 nu pot fi lipiți unul de altul.
+  Ambele funcții folosesc programare dinamică și construiesc două matrice bidimensionale, una pentru numărul de șiruri care se termină cu 0 și alta pentru cele care se termină cu 1. 
+  Matricele sunt actualizate iterativ, iar la final se calculează suma dintre numărul de șiruri care se termină cu 0 și cele care se termină cu 1. 
+  Pentru a evita numerele prea mari, se face o reținere a restului de la împărțirea la un număr specific.
+
+Problema 5 -> BADGPT:
+
+  -> Descrierea algoritmului:
+  Acesta este un algoritmul are două funcții, "decode" și "badgpt". Funcția "decode" primește un șir de caractere criptat, 
+  care conține litere și cifre și returnează șirul original decodat. Funcția "badgpt" primește un șir de caractere criptat
+  și calculează numărul de moduri diferite în care acest șir poate fi decodat într-un șir de litere, ținând cont de regulile specifice de codare
+
+  ->Algoritm in functia badgpt:
+  Algoritmul utilizează un vector de numere întregi pentru a stoca numărul de moduri diferite în care se poate face decodarea până la un anumit indice din șirul decodat. 
+  Algoritmul parcurge șirul decodat și actualizează vectorul de numere întregi pe baza regulilor specifice de codare. 
+  În final, algoritmul returnează valoarea numărului de moduri diferite de decodare a șirului. 
+  Valoarea MOD este utilizată pentru a limita numerele întregi la valori mai mici, astfel încât acestea să nu depășească memoria disponibilă în program.
