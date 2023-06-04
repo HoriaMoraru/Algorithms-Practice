@@ -63,3 +63,88 @@ Problema 5 -> BADGPT:
   Algoritmul parcurge șirul decodat și actualizează vectorul de numere întregi pe baza regulilor specifice de codare. 
   În final, algoritmul returnează valoarea numărului de moduri diferite de decodare a șirului. 
   Valoarea MOD este utilizată pentru a limita numerele întregi la valori mai mici, astfel încât acestea să nu depășească memoria disponibilă în program.
+  
+Tema 2 PA Moraru Horia-Andrei
+
+PROBLEMA 1 - SUPERCOMPUTER :
+
+-COMPLEXITATE : 
+  O(M + 2*(N + M)), care poate fi simplificată la O(N + M). 
+  Complexitatea este determinată în principal de numărul de noduri (N) și de numărul de muchii (M), 
+  iar în cele mai multe cazuri, M este mai mare decât N, deci complexitatea este dominată de M.
+
+-DESCRIERE :
+
+  Se definește o structură numită "Graph" care reprezintă un graf orientat. 
+  Graful are un număr de noduri (N), o listă de dependențe între noduri și un vector care memorează gradul de intrare al fiecărui nod.
+
+  Se implementează o funcție "calculate_context_switches" care primește un set de date, două cozi de noduri și
+  calculează numărul de context switch necesare pentru a executa toate task-urile în ordinea corectă. 
+  Algoritmul utilizează o abordare de parcurgere a grafului, unde se elimină dependențele dintre noduri prin decrementarea gradului de intrare 
+  al nodurilor dependente și adăugarea acestora în coada de noduri gata de execuție sau în coada de noduri care necesită context switch. 
+  Se continuă parcurgerea până când toate nodurile sunt procesate.
+
+  Se implementează o funcție "min_switches" care primește un set de date și returnează numărul minim de context switch necesare. 
+  Această funcție inițializează două cozi de noduri, una pentru nodurile gata de execuție și una pentru nodurile care necesită context switch. 
+  Se parcurg nodurile fără dependențe și se adaugă în coada corespunzătoare în funcție de setul de date asociat fiecărui nod. 
+  Se apelează apoi funcția "calculate_context_switches" pentru ambele cozi de noduri și se returnează numărul minim dintre cele două rezultate.
+
+PROBLEMA 2 - FERATE :
+
+-COMPLEXITATE : 
+  O(N + M), TARJAN
+
+-DESCRIERE :
+
+  Algoritmul folosește o variantă modificată a algoritmului Tarjan pentru detectarea componentelor tare conexe (Strongly Connected Components - SCC)
+  într-un graf orientat. Ideea de bază este că o componentă tare conexă este un subgraf în care există un drum între oricare două noduri. 
+  Pentru a calcula numărul minim de căi ferate, algoritmul urmărește mai întâi detectarea tuturor componentelor tare conexe din graf.
+
+  Funcția get_min_railways este punctul de intrare în algoritm. Aceasta parcurge fiecare nod nevizitat din graf și 
+  apelează funcția tarjan_dfs pentru a detecta componentele tare conexe și a calcula numărul minim de căi ferate.
+
+  Funcția tarjan_dfs implementează algoritmul Tarjan pentru fiecare nod în parte. 
+  Algoritmul este recursiv și utilizează o abordare de tip backtracking pentru a găsi componentele tare conexe. 
+  Fiecare nod nevizitat primește un identificator unic de timp și un low_link inițial egal cu identificatorul de timp. 
+  Nodurile sunt apoi adăugate în stivă și marcate ca fiind în stivă (in_stack). 
+  Se explorează toate vecinii nodului curent și se actualizează low_link-ul în funcție de vecinii cu care există o conexiune. 
+  Dacă low_link-ul nodului curent este egal cu identificatorul său de timp, se extrag toate nodurile din stivă și se formează o componentă tare conexă. 
+  Se verifică dacă există o cale către destinație din componenta respectivă și se actualizează numărul minim de căi ferate în consecință.
+
+  Funcția get_min_railways apelează funcția tarjan_dfs pentru fiecare nod nevizitat din graf.
+
+PROBLEMA 3 - TELEPORTARE :
+
+-COMPLEXITATE : 
+  O((N + M)logN), DIJKSTRA cu liste de adiacență
+
+-DESCRIERE :
+ 
+  Acest algoritm implementează o variantă modificată a algoritmului Dijkstra pentru a găsi cel mai scurt drum într-un graf orientat ponderat. 
+  Scopul este de a calcula distanța minimă între nodul de sursă și nodul de destinație, luând în considerare și muchii speciale de teleportare.
+
+  Funcția add_teleport_edge este utilizată pentru a adăuga muchii de teleportare între două noduri. 
+  Aceasta adaugă muchii de teleportare în funcție de un pas specificat (p). 
+  Pentru fiecare nod și pas multiplu de p mai mic sau egal cu numărul total de noduri, se adaugă o muchie de teleportare între cele două noduri.
+
+  Funcția dijkstra_teleport implementează algoritmul Dijkstra modificat pentru a găsi cel mai scurt drum în graful cu muchii obișnuite și de teleportare. 
+  Se utilizează un vector d pentru a memora distanțele minime de la nodul de sursă la celelalte noduri. 
+  Se inițializează distanțele cu o valoare mare (MAX) și se adaugă nodul de sursă în coada de priorități.
+  În timp ce coada de priorități nu este goală, se extrage nodul cu cea mai mică distanță și se actualizează distanțele către vecinii acestuia. 
+  Se parcurg atât muchiile obișnuite, cât și cele de teleportare și se actualizează distanțele dacă se găsește un drum mai scurt. 
+  Astfel, se explorează toate căile posibile pentru a ajunge la fiecare nod și se determină distanța minimă până la nodul de destinație (N).
+
+PROBLEMA 4 - MAGAZIN(BONUS)
+
+  -COMPLEXITATE : 
+    O(N + M) - UN DFS;
+
+  -DESCRIERE :
+
+  Funcția dfs implementează o căutare în adâncime (DFS) pentru a marca depozitele și a calcula câte depozite pot fi atinse din fiecare depozit. 
+  Se marchează depozitul curent ca vizitat și se actualizează indexul și mapările dintre index și depozit. 
+  De asemenea, se numără câte depozite pot fi atinse din depozitul curent și se apelează recursiv dfs pentru depozitele vecine nevizitate.
+
+  Funcția answer_questions răspunde la întrebările primite. 
+  Pentru fiecare întrebare, se verifică dacă numărul de depozite reachable (can_reach) este mai mic decât valoarea întrebării e. 
+  În acest caz, se afișează -1, altfel se găsește indexul corespunzător depozitului d și se adaugă valoarea întrebării e pentru a obține depozitul cerut
